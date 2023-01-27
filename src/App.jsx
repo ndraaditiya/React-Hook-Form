@@ -3,6 +3,7 @@ import { getTodosFn, postTodoFn } from './config/api'
 import TodoItem from './TodoItem'
 import { useForm, Controller } from 'react-hook-form'
 import { Grid, TextField, Button, InputLabel, FormControl, Select, MenuItem, Container } from '@mui/material'
+import { useEffect } from 'react'
 
 function App() {
   const {
@@ -10,6 +11,7 @@ function App() {
     register,
     control,
     reset,
+    setFocus,
     formState: { errors }
   } = useForm({
     defaultValues: {
@@ -17,6 +19,10 @@ function App() {
       isComplete: false
     }
   })
+
+  useEffect(() => {
+    setFocus('todoName');
+  }, [setFocus]);
 
   const queryClient = useQueryClient()
   const { data: todos, isLoading } = useQuery({
@@ -63,7 +69,11 @@ function App() {
                     />
                   )}
                 />
-                {errors.todoName && <p style={{ color: 'salmon' }}>Todo Name is Required and<br /> Just Contained an alphabet!</p>}
+                {errors.todoName &&
+                  <span style={{ color: 'salmon', fontSize: '.8em', fontWeight: 'bold' }}>
+                    Todo Name is Required and Just Contained an alphabet!
+                  </span>
+                }
               </Grid>
               <Grid item xs={12}>
                 <Controller

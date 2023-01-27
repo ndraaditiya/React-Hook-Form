@@ -13,7 +13,7 @@ const TodoItem = ({ _id, todoName, isComplete }) => {
     }
   )
 
-  const { mutate: deleteTodo } = useMutation(
+  const { isLoading: isDeleting, mutate: deleteTodo } = useMutation(
     (id) => deleteTodoFn(id),
     {
       onSuccess: () => {
@@ -30,8 +30,8 @@ const TodoItem = ({ _id, todoName, isComplete }) => {
   return (
     <>
       <Box sx={{ py: 2, px: 2.5, display: 'flex', justifyContent: 'space-between' }}>
-        {isUpdating ? (
-          <span>Updating..</span>
+        {isUpdating || isDeleting ? (
+          <span>{isUpdating ? 'Updating' : 'Deleting'}..</span>
         ) : (
           <>
             <span style={{ textDecoration: isComplete ? 'line-through' : 'none' }}>{todoName}</span>
