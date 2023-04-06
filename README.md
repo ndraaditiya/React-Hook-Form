@@ -7,4 +7,4 @@ btw, i get the free api from thi repo: **https://github.com/ndraaditiya/public-a
 
 From this simple project, i hope you will understand the workflow of React Hook Form and Material-UI with React-Query
 
-you can access the hosted project on: **https://react-hook-formm.vercel.app/**
+you can access the hosted project on: **https://react-hookk-form.netlify.app/**
